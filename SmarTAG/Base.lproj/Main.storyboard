@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nfy-Pl-JA5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings-->
+        <scene sceneID="aei-dX-ndi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="sQB-Kj-adn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="2yI-Zb-PUA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Za0-rJ-hni" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1617" y="-75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Qip-yV-zrI">
+            <objects>
+                <navigationController id="nfy-Pl-JA5" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6cX-72-TrZ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Mvs-ZP-EWh" kind="relationship" relationship="rootViewController" id="U36-Yh-skE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="izx-W5-yu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3937" y="-179"/>
+        </scene>
+        <!--Smar Tag Main View Controller-->
+        <scene sceneID="F1c-ID-uxq">
+            <objects>
+                <viewController id="Mvs-ZP-EWh" customClass="SmarTagMainViewController" customModule="SmarTAG" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4RK-S9-hKI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJC-Xn-Ofb">
+                                <rect key="frame" x="87.5" y="265.5" width="200" height="200"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <state key="normal" title="Read NFC tag" backgroundImage="SearchButton"/>
+                                <connections>
+                                    <action selector="onReadNfcButtonClicked:" destination="Mvs-ZP-EWh" eventType="touchUpInside" id="oe0-vI-pSM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOm-bB-sFP">
+                                <rect key="frame" x="112.5" y="497.5" width="150" height="150"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <state key="normal" title="About" backgroundImage="AboutButton"/>
+                                <connections>
+                                    <segue destination="A8z-68-Yoe" kind="show" id="qkD-Jq-KuD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NOm-bB-sFP" firstAttribute="centerX" secondItem="WjK-wy-8KG" secondAttribute="centerX" id="2r1-1M-SQ4"/>
+                            <constraint firstItem="WjK-wy-8KG" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NOm-bB-sFP" secondAttribute="bottom" constant="8" id="DpM-Wh-sKC"/>
+                            <constraint firstItem="NOm-bB-sFP" firstAttribute="top" secondItem="zJC-Xn-Ofb" secondAttribute="bottom" constant="32" id="Ty6-8j-14g"/>
+                            <constraint firstItem="zJC-Xn-Ofb" firstAttribute="centerY" secondItem="WjK-wy-8KG" secondAttribute="centerY" id="dJC-v3-IJg"/>
+                            <constraint firstItem="zJC-Xn-Ofb" firstAttribute="centerX" secondItem="WjK-wy-8KG" secondAttribute="centerX" id="lKT-I4-7zN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WjK-wy-8KG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="c6s-Is-9cg"/>
+                    <connections>
+                        <segue destination="URb-N7-wnw" kind="show" identifier="SmarTag_showTagContent" id="uNP-h6-Srk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xvy-wl-QnW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3111.1999999999998" y="-179.46026986506749"/>
+        </scene>
+        <!--Smar Tag Content View Controller-->
+        <scene sceneID="0yj-7F-f9S">
+            <objects>
+                <tabBarController id="URb-N7-wnw" customClass="SmarTagContentViewController" customModule="SmarTAG" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XDe-hL-CIn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="1np-XZ-PPe" kind="relationship" relationship="viewControllers" id="6QV-2a-s65"/>
+                        <segue destination="tAr-LZ-XLs" kind="relationship" relationship="viewControllers" id="VdS-dg-6AY"/>
+                        <segue destination="sQB-Kj-adn" kind="relationship" relationship="viewControllers" id="uHK-Jp-c6h"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bX3-HQ-ti7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2207" y="-179"/>
+        </scene>
+        <!--Extreme-->
+        <scene sceneID="VUq-7c-ZIA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Extreme" id="tAr-LZ-XLs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="huB-vR-ZaJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MT8-DD-TdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1617" y="-187"/>
+        </scene>
+        <!--Smar Tag About View Controller-->
+        <scene sceneID="uF1-kz-atn">
+            <objects>
+                <viewController id="A8z-68-Yoe" customClass="SmarTagAboutViewController" customModule="SmarTAG" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RtR-Wr-wy3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_header" translatesAutoresizingMaskIntoConstraints="NO" id="p8N-Yq-Jrw">
+                                <rect key="frame" x="8" y="80" width="359" height="120"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ST AppName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVt-jN-JUd">
+                                <rect key="frame" x="8" y="216" width="359" height="31.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uby-KX-6KK">
+                                <rect key="frame" x="8" y="255.5" width="359" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For Evaluation Only" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dV-f1-143">
+                                <rect key="frame" x="8" y="643" width="359" height="16"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1di-xN-8l1">
+                                <rect key="frame" x="8" y="290" width="375" height="345"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO" allowsPictureInPictureMediaPlayback="NO">
+                                    <dataDetectorTypes key="dataDetectorTypes" none="YES"/>
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences" javaScriptEnabled="NO"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7dV-f1-143" firstAttribute="leading" secondItem="cjW-8w-u7m" secondAttribute="leading" constant="8" id="3h2-eh-rrc"/>
+                            <constraint firstItem="Uby-KX-6KK" firstAttribute="leading" secondItem="cjW-8w-u7m" secondAttribute="leading" constant="8" id="53l-WA-hue"/>
+                            <constraint firstItem="p8N-Yq-Jrw" firstAttribute="leading" secondItem="cjW-8w-u7m" secondAttribute="leading" constant="8" id="6cy-1r-8iI"/>
+                            <constraint firstItem="cjW-8w-u7m" firstAttribute="trailing" secondItem="p8N-Yq-Jrw" secondAttribute="trailing" constant="8" id="EU3-Q2-WWU"/>
+                            <constraint firstItem="1di-xN-8l1" firstAttribute="trailing" secondItem="cjW-8w-u7m" secondAttribute="trailing" constant="8" id="Lph-Y3-vP2"/>
+                            <constraint firstItem="yVt-jN-JUd" firstAttribute="leading" secondItem="cjW-8w-u7m" secondAttribute="leading" constant="8" id="NHN-wD-xbX"/>
+                            <constraint firstItem="cjW-8w-u7m" firstAttribute="bottom" secondItem="7dV-f1-143" secondAttribute="bottom" constant="8" id="TAn-US-UBk"/>
+                            <constraint firstItem="cjW-8w-u7m" firstAttribute="trailing" secondItem="7dV-f1-143" secondAttribute="trailing" constant="8" id="Yzi-tH-9at"/>
+                            <constraint firstItem="cjW-8w-u7m" firstAttribute="trailing" secondItem="yVt-jN-JUd" secondAttribute="trailing" constant="8" id="Zfa-Gy-pF4"/>
+                            <constraint firstItem="p8N-Yq-Jrw" firstAttribute="top" secondItem="cjW-8w-u7m" secondAttribute="top" constant="16" id="aU9-Qo-YIw"/>
+                            <constraint firstItem="Uby-KX-6KK" firstAttribute="top" secondItem="yVt-jN-JUd" secondAttribute="bottom" constant="8" id="bto-Db-hAn"/>
+                            <constraint firstItem="cjW-8w-u7m" firstAttribute="trailing" secondItem="Uby-KX-6KK" secondAttribute="trailing" constant="8" id="f6C-AN-FIK"/>
+                            <constraint firstItem="7dV-f1-143" firstAttribute="top" secondItem="1di-xN-8l1" secondAttribute="bottom" constant="8" id="ncs-If-47D"/>
+                            <constraint firstItem="1di-xN-8l1" firstAttribute="leading" secondItem="cjW-8w-u7m" secondAttribute="leading" constant="8" id="nuM-Ui-FAg"/>
+                            <constraint firstItem="1di-xN-8l1" firstAttribute="top" secondItem="Uby-KX-6KK" secondAttribute="bottom" constant="16" id="rhG-m7-b5u"/>
+                            <constraint firstItem="yVt-jN-JUd" firstAttribute="top" secondItem="p8N-Yq-Jrw" secondAttribute="bottom" constant="16" id="s14-fl-myW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cjW-8w-u7m"/>
+                    </view>
+                    <connections>
+                        <outlet property="mAboutContent" destination="1di-xN-8l1" id="gkg-oe-P5D"/>
+                        <outlet property="mAppNameLabel" destination="yVt-jN-JUd" id="6Fz-UO-o43"/>
+                        <outlet property="mVersionLabel" destination="Uby-KX-6KK" id="s8Y-cN-p5A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cQL-5L-Fgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3111" y="592"/>
+        </scene>
+        <!--ShowData-->
+        <scene sceneID="kvi-Y2-QiM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ShowData" id="1np-XZ-PPe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="zgy-mB-8Im"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vf3-e2-a5R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1608" y="-298"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="AboutButton" width="150" height="150"/>
+        <image name="SearchButton" width="200" height="200"/>
+        <image name="about_header" width="212" height="120"/>
+    </resources>
+</document>

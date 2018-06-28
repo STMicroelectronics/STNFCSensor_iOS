@@ -1,0 +1,773 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6608E83A201B3819006AB010 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608E839201B3819006AB010 /* AppDelegate.swift */; };
+		6608E841201B3819006AB010 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6608E83F201B3819006AB010 /* Main.storyboard */; };
+		6608E85C201B381A006AB010 /* SmarTAGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608E85B201B381A006AB010 /* SmarTAGUITests.swift */; };
+		660F022A201B7E2600A46C8D /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660F0229201B7E2500A46C8D /* Version.swift */; };
+		660F022E201B7EF100A46C8D /* SmarTagNDefParserV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660F022D201B7EF100A46C8D /* SmarTagNDefParserV1Tests.swift */; };
+		6618177E2062A1E50025DCE3 /* SmarTagSensorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618177D2062A1E50025DCE3 /* SmarTagSensorDetailsViewController.swift */; };
+		6636E726205A878E00DDFC5C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F7315020580312008B4ECD /* Charts.framework */; };
+		6636E729205A8CED00DDFC5C /* SmarTagSensorSampleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6636E728205A8CED00DDFC5C /* SmarTagSensorSampleViewCell.swift */; };
+		663E03332063B6CC009F8962 /* SmarTagCSVFileExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663E03322063B6CC009F8962 /* SmarTagCSVFileExporter.swift */; };
+		664AA79020764B660080B923 /* SmarTagNDefParserProtocolFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664AA78F20764B660080B923 /* SmarTagNDefParserProtocolFake.swift */; };
+		664C5699206CD77A00572318 /* SmarTagAccelerationSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5698206CD77A00572318 /* SmarTagAccelerationSettingCell.swift */; };
+		664C569B206CD7E000572318 /* SmarTagThresholdSensorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C569A206CD7E000572318 /* SmarTagThresholdSensorCell.swift */; };
+		664C569D206D042000572318 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664C569C206D042000572318 /* Settings.storyboard */; };
+		664C569F206D049600572318 /* Extreme.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664C569E206D049600572318 /* Extreme.storyboard */; };
+		665233D02056C58600014F6F /* SmarTagExtremeDataViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665233CF2056C58600014F6F /* SmarTagExtremeDataViewCell.swift */; };
+		6682E63E2031E8120015FB78 /* SmarTagNDefParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6682E63C2031E8120015FB78 /* SmarTagNDefParserProtocol.swift */; };
+		6682E63F2031E8120015FB78 /* SmarTagNDefParserV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6682E63D2031E8120015FB78 /* SmarTagNDefParserV1.swift */; };
+		669209DE206A6C680044558E /* st_images_LanchScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669209DD206A6C680044558E /* st_images_LanchScreen.xcassets */; };
+		669209E0206A755E0044558E /* SmarTagAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669209DF206A755E0044558E /* SmarTagAboutViewController.swift */; };
+		6693CE9E2031929B0090BAC6 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6693CE9D2031929B0090BAC6 /* Configuration.swift */; };
+		66B9D54D2031A64C009EF53B /* SensorSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9D54C2031A64C009EF53B /* SensorSample.swift */; };
+		66B9D54F2031DBF6009EF53B /* DateExtreme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9D54E2031DBF6009EF53B /* DateExtreme.swift */; };
+		66C4249D206BC20B00E58BCD /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 66C4249C206BC20B00E58BCD /* about.html */; };
+		66C58DC420528CA000034486 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66C58DC320528CA000034486 /* images.xcassets */; };
+		66C58DC72052979200034486 /* SmarTagSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C58DC62052979200034486 /* SmarTagSettingsViewController.swift */; };
+		66C58DC92052B83600034486 /* SmarTagSensorSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C58DC82052B83600034486 /* SmarTagSensorSettingCell.swift */; };
+		66C58DCC2052D9DE00034486 /* SmarTagExtremeDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C58DCB2052D9DE00034486 /* SmarTagExtremeDataViewController.swift */; };
+		66C88E692046BCD900D796FF /* st_images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66C88E682046BCD900D796FF /* st_images.xcassets */; };
+		66C88E6B2046BEFC00D796FF /* SmarTagMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C88E6A2046BEFC00D796FF /* SmarTagMainViewController.swift */; };
+		66C88E6E2046C2AE00D796FF /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C88E6D2046C2AE00D796FF /* UIViewControllerExt.swift */; };
+		66C88E702046E74F00D796FF /* SmarTagContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C88E6F2046E74F00D796FF /* SmarTagContentViewController.swift */; };
+		66C88E722047055600D796FF /* StarTagObjectWithTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C88E712047055600D796FF /* StarTagObjectWithTag.swift */; };
+		66E34B1F205812D5004C57FB /* SmarTagSensorName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E34B1E205812D5004C57FB /* SmarTagSensorName.swift */; };
+		66E34B2220581B8F004C57FB /* ShowData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66E34B2120581B8F004C57FB /* ShowData.storyboard */; };
+		66E34B2420581D19004C57FB /* SmarTagSensorSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E34B2320581D19004C57FB /* SmarTagSensorSampleViewController.swift */; };
+		66E34B2620581D5B004C57FB /* SmarTagEventSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E34B2520581D5B004C57FB /* SmarTagEventSampleViewController.swift */; };
+		66E34B2820581D87004C57FB /* SmarTagShowDataPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E34B2720581D87004C57FB /* SmarTagShowDataPageViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6608E84D201B381A006AB010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6608E82E201B3819006AB010 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6608E835201B3819006AB010;
+			remoteInfo = SmarTAG;
+		};
+		6608E858201B381A006AB010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6608E82E201B3819006AB010 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6608E835201B3819006AB010;
+			remoteInfo = SmarTAG;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6608E836201B3819006AB010 /* SmarTAG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmarTAG.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6608E839201B3819006AB010 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6608E840201B3819006AB010 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6608E847201B3819006AB010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6608E84C201B381A006AB010 /* SmarTAGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmarTAGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6608E852201B381A006AB010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6608E857201B381A006AB010 /* SmarTAGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmarTAGUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6608E85B201B381A006AB010 /* SmarTAGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTAGUITests.swift; sourceTree = "<group>"; };
+		6608E85D201B381A006AB010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6608E869201B383D006AB010 /* SmarTAG.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmarTAG.entitlements; sourceTree = "<group>"; };
+		660F0229201B7E2500A46C8D /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		660F022D201B7EF100A46C8D /* SmarTagNDefParserV1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagNDefParserV1Tests.swift; sourceTree = "<group>"; };
+		6618177D2062A1E50025DCE3 /* SmarTagSensorDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagSensorDetailsViewController.swift; sourceTree = "<group>"; };
+		6636E728205A8CED00DDFC5C /* SmarTagSensorSampleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagSensorSampleViewCell.swift; sourceTree = "<group>"; };
+		663E03322063B6CC009F8962 /* SmarTagCSVFileExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagCSVFileExporter.swift; sourceTree = "<group>"; };
+		664AA78F20764B660080B923 /* SmarTagNDefParserProtocolFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagNDefParserProtocolFake.swift; sourceTree = "<group>"; };
+		664C5698206CD77A00572318 /* SmarTagAccelerationSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagAccelerationSettingCell.swift; sourceTree = "<group>"; };
+		664C569A206CD7E000572318 /* SmarTagThresholdSensorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagThresholdSensorCell.swift; sourceTree = "<group>"; };
+		664C569C206D042000572318 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		664C569E206D049600572318 /* Extreme.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Extreme.storyboard; sourceTree = "<group>"; };
+		665233CF2056C58600014F6F /* SmarTagExtremeDataViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagExtremeDataViewCell.swift; sourceTree = "<group>"; };
+		6682E63C2031E8120015FB78 /* SmarTagNDefParserProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmarTagNDefParserProtocol.swift; sourceTree = "<group>"; };
+		6682E63D2031E8120015FB78 /* SmarTagNDefParserV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmarTagNDefParserV1.swift; sourceTree = "<group>"; };
+		669209DD206A6C680044558E /* st_images_LanchScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = st_images_LanchScreen.xcassets; sourceTree = "<group>"; };
+		669209DF206A755E0044558E /* SmarTagAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagAboutViewController.swift; sourceTree = "<group>"; };
+		6693CE9D2031929B0090BAC6 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		66B9D54C2031A64C009EF53B /* SensorSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSample.swift; sourceTree = "<group>"; };
+		66B9D54E2031DBF6009EF53B /* DateExtreme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtreme.swift; sourceTree = "<group>"; };
+		66C4249C206BC20B00E58BCD /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		66C58DC320528CA000034486 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
+		66C58DC62052979200034486 /* SmarTagSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagSettingsViewController.swift; sourceTree = "<group>"; };
+		66C58DC82052B83600034486 /* SmarTagSensorSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagSensorSettingCell.swift; sourceTree = "<group>"; };
+		66C58DCB2052D9DE00034486 /* SmarTagExtremeDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagExtremeDataViewController.swift; sourceTree = "<group>"; };
+		66C88E682046BCD900D796FF /* st_images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = st_images.xcassets; sourceTree = "<group>"; };
+		66C88E6A2046BEFC00D796FF /* SmarTagMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagMainViewController.swift; sourceTree = "<group>"; };
+		66C88E6D2046C2AE00D796FF /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		66C88E6F2046E74F00D796FF /* SmarTagContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagContentViewController.swift; sourceTree = "<group>"; };
+		66C88E712047055600D796FF /* StarTagObjectWithTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarTagObjectWithTag.swift; sourceTree = "<group>"; };
+		66E34B1E205812D5004C57FB /* SmarTagSensorName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagSensorName.swift; sourceTree = "<group>"; };
+		66E34B2120581B8F004C57FB /* ShowData.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowData.storyboard; sourceTree = "<group>"; };
+		66E34B2320581D19004C57FB /* SmarTagSensorSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagSensorSampleViewController.swift; sourceTree = "<group>"; };
+		66E34B2520581D5B004C57FB /* SmarTagEventSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagEventSampleViewController.swift; sourceTree = "<group>"; };
+		66E34B2720581D87004C57FB /* SmarTagShowDataPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmarTagShowDataPageViewController.swift; sourceTree = "<group>"; };
+		66F7315020580312008B4ECD /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6608E833201B3819006AB010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6636E726205A878E00DDFC5C /* Charts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6608E849201B381A006AB010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6608E854201B381A006AB010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6608E82D201B3819006AB010 = {
+			isa = PBXGroup;
+			children = (
+				6608E838201B3819006AB010 /* SmarTAG */,
+				6608E84F201B381A006AB010 /* SmarTAGTests */,
+				6608E85A201B381A006AB010 /* SmarTAGUITests */,
+				6608E837201B3819006AB010 /* Products */,
+				66F731472057FE4B008B4ECD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6608E837201B3819006AB010 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6608E836201B3819006AB010 /* SmarTAG.app */,
+				6608E84C201B381A006AB010 /* SmarTAGTests.xctest */,
+				6608E857201B381A006AB010 /* SmarTAGUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6608E838201B3819006AB010 /* SmarTAG */ = {
+			isa = PBXGroup;
+			children = (
+				66E34B2020581B76004C57FB /* ShowData */,
+				66C58DCA2052D3AC00034486 /* Extreme */,
+				66C58DC52052977600034486 /* Settings */,
+				66C88E6C2046C28F00D796FF /* Util */,
+				6682E63B2031E8120015FB78 /* SmarTag */,
+				660F0228201B7E2500A46C8D /* Model */,
+				6608E869201B383D006AB010 /* SmarTAG.entitlements */,
+				6608E839201B3819006AB010 /* AppDelegate.swift */,
+				66C88E6A2046BEFC00D796FF /* SmarTagMainViewController.swift */,
+				66C88E6F2046E74F00D796FF /* SmarTagContentViewController.swift */,
+				669209DF206A755E0044558E /* SmarTagAboutViewController.swift */,
+				66C88E712047055600D796FF /* StarTagObjectWithTag.swift */,
+				6608E83F201B3819006AB010 /* Main.storyboard */,
+				6608E847201B3819006AB010 /* Info.plist */,
+				66C88E682046BCD900D796FF /* st_images.xcassets */,
+				669209DD206A6C680044558E /* st_images_LanchScreen.xcassets */,
+				66C58DC320528CA000034486 /* images.xcassets */,
+				66C4249C206BC20B00E58BCD /* about.html */,
+			);
+			path = SmarTAG;
+			sourceTree = "<group>";
+		};
+		6608E84F201B381A006AB010 /* SmarTAGTests */ = {
+			isa = PBXGroup;
+			children = (
+				6608E852201B381A006AB010 /* Info.plist */,
+				660F022D201B7EF100A46C8D /* SmarTagNDefParserV1Tests.swift */,
+			);
+			path = SmarTAGTests;
+			sourceTree = "<group>";
+		};
+		6608E85A201B381A006AB010 /* SmarTAGUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6608E85B201B381A006AB010 /* SmarTAGUITests.swift */,
+				6608E85D201B381A006AB010 /* Info.plist */,
+			);
+			path = SmarTAGUITests;
+			sourceTree = "<group>";
+		};
+		660F0228201B7E2500A46C8D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				660F0229201B7E2500A46C8D /* Version.swift */,
+				6693CE9D2031929B0090BAC6 /* Configuration.swift */,
+				66B9D54C2031A64C009EF53B /* SensorSample.swift */,
+				66B9D54E2031DBF6009EF53B /* DateExtreme.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6682E63B2031E8120015FB78 /* SmarTag */ = {
+			isa = PBXGroup;
+			children = (
+				6682E63C2031E8120015FB78 /* SmarTagNDefParserProtocol.swift */,
+				6682E63D2031E8120015FB78 /* SmarTagNDefParserV1.swift */,
+				663E03322063B6CC009F8962 /* SmarTagCSVFileExporter.swift */,
+				664AA78F20764B660080B923 /* SmarTagNDefParserProtocolFake.swift */,
+			);
+			path = SmarTag;
+			sourceTree = "<group>";
+		};
+		66C58DC52052977600034486 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				664C569C206D042000572318 /* Settings.storyboard */,
+				66C58DC62052979200034486 /* SmarTagSettingsViewController.swift */,
+				66C58DC82052B83600034486 /* SmarTagSensorSettingCell.swift */,
+				664C5698206CD77A00572318 /* SmarTagAccelerationSettingCell.swift */,
+				664C569A206CD7E000572318 /* SmarTagThresholdSensorCell.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		66C58DCA2052D3AC00034486 /* Extreme */ = {
+			isa = PBXGroup;
+			children = (
+				664C569E206D049600572318 /* Extreme.storyboard */,
+				66C58DCB2052D9DE00034486 /* SmarTagExtremeDataViewController.swift */,
+				665233CF2056C58600014F6F /* SmarTagExtremeDataViewCell.swift */,
+			);
+			path = Extreme;
+			sourceTree = "<group>";
+		};
+		66C88E6C2046C28F00D796FF /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				66C88E6D2046C2AE00D796FF /* UIViewControllerExt.swift */,
+				66E34B1E205812D5004C57FB /* SmarTagSensorName.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		66E34B2020581B76004C57FB /* ShowData */ = {
+			isa = PBXGroup;
+			children = (
+				66E34B2120581B8F004C57FB /* ShowData.storyboard */,
+				66E34B2720581D87004C57FB /* SmarTagShowDataPageViewController.swift */,
+				66E34B2320581D19004C57FB /* SmarTagSensorSampleViewController.swift */,
+				6636E728205A8CED00DDFC5C /* SmarTagSensorSampleViewCell.swift */,
+				66E34B2520581D5B004C57FB /* SmarTagEventSampleViewController.swift */,
+				6618177D2062A1E50025DCE3 /* SmarTagSensorDetailsViewController.swift */,
+			);
+			path = ShowData;
+			sourceTree = "<group>";
+		};
+		66F731472057FE4B008B4ECD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66F7315020580312008B4ECD /* Charts.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6608E835201B3819006AB010 /* SmarTAG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6608E860201B381A006AB010 /* Build configuration list for PBXNativeTarget "SmarTAG" */;
+			buildPhases = (
+				6608E832201B3819006AB010 /* Sources */,
+				6608E833201B3819006AB010 /* Frameworks */,
+				6608E834201B3819006AB010 /* Resources */,
+				6636E727205A87FD00DDFC5C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmarTAG;
+			productName = SmarTAG;
+			productReference = 6608E836201B3819006AB010 /* SmarTAG.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6608E84B201B381A006AB010 /* SmarTAGTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6608E863201B381A006AB010 /* Build configuration list for PBXNativeTarget "SmarTAGTests" */;
+			buildPhases = (
+				6608E848201B381A006AB010 /* Sources */,
+				6608E849201B381A006AB010 /* Frameworks */,
+				6608E84A201B381A006AB010 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6608E84E201B381A006AB010 /* PBXTargetDependency */,
+			);
+			name = SmarTAGTests;
+			productName = SmarTAGTests;
+			productReference = 6608E84C201B381A006AB010 /* SmarTAGTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6608E856201B381A006AB010 /* SmarTAGUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6608E866201B381A006AB010 /* Build configuration list for PBXNativeTarget "SmarTAGUITests" */;
+			buildPhases = (
+				6608E853201B381A006AB010 /* Sources */,
+				6608E854201B381A006AB010 /* Frameworks */,
+				6608E855201B381A006AB010 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6608E859201B381A006AB010 /* PBXTargetDependency */,
+			);
+			name = SmarTAGUITests;
+			productName = SmarTAGUITests;
+			productReference = 6608E857201B381A006AB010 /* SmarTAGUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6608E82E201B3819006AB010 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					6608E835201B3819006AB010 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.NearFieldCommunicationTagReading = {
+								enabled = 1;
+							};
+						};
+					};
+					6608E84B201B381A006AB010 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6608E835201B3819006AB010;
+					};
+					6608E856201B381A006AB010 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6608E835201B3819006AB010;
+					};
+				};
+			};
+			buildConfigurationList = 6608E831201B3819006AB010 /* Build configuration list for PBXProject "SmarTAG" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6608E82D201B3819006AB010;
+			productRefGroup = 6608E837201B3819006AB010 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6608E835201B3819006AB010 /* SmarTAG */,
+				6608E84B201B381A006AB010 /* SmarTAGTests */,
+				6608E856201B381A006AB010 /* SmarTAGUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6608E834201B3819006AB010 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C88E692046BCD900D796FF /* st_images.xcassets in Resources */,
+				66E34B2220581B8F004C57FB /* ShowData.storyboard in Resources */,
+				6608E841201B3819006AB010 /* Main.storyboard in Resources */,
+				664C569F206D049600572318 /* Extreme.storyboard in Resources */,
+				66C4249D206BC20B00E58BCD /* about.html in Resources */,
+				66C58DC420528CA000034486 /* images.xcassets in Resources */,
+				669209DE206A6C680044558E /* st_images_LanchScreen.xcassets in Resources */,
+				664C569D206D042000572318 /* Settings.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6608E84A201B381A006AB010 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6608E855201B381A006AB010 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6636E727205A87FD00DDFC5C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6608E832201B3819006AB010 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66E34B1F205812D5004C57FB /* SmarTagSensorName.swift in Sources */,
+				66C88E6E2046C2AE00D796FF /* UIViewControllerExt.swift in Sources */,
+				66B9D54F2031DBF6009EF53B /* DateExtreme.swift in Sources */,
+				66E34B2820581D87004C57FB /* SmarTagShowDataPageViewController.swift in Sources */,
+				665233D02056C58600014F6F /* SmarTagExtremeDataViewCell.swift in Sources */,
+				66C88E722047055600D796FF /* StarTagObjectWithTag.swift in Sources */,
+				66B9D54D2031A64C009EF53B /* SensorSample.swift in Sources */,
+				660F022A201B7E2600A46C8D /* Version.swift in Sources */,
+				66C58DCC2052D9DE00034486 /* SmarTagExtremeDataViewController.swift in Sources */,
+				66C58DC72052979200034486 /* SmarTagSettingsViewController.swift in Sources */,
+				6682E63F2031E8120015FB78 /* SmarTagNDefParserV1.swift in Sources */,
+				66E34B2420581D19004C57FB /* SmarTagSensorSampleViewController.swift in Sources */,
+				664C569B206CD7E000572318 /* SmarTagThresholdSensorCell.swift in Sources */,
+				663E03332063B6CC009F8962 /* SmarTagCSVFileExporter.swift in Sources */,
+				66C58DC92052B83600034486 /* SmarTagSensorSettingCell.swift in Sources */,
+				6608E83A201B3819006AB010 /* AppDelegate.swift in Sources */,
+				669209E0206A755E0044558E /* SmarTagAboutViewController.swift in Sources */,
+				664C5699206CD77A00572318 /* SmarTagAccelerationSettingCell.swift in Sources */,
+				664AA79020764B660080B923 /* SmarTagNDefParserProtocolFake.swift in Sources */,
+				6618177E2062A1E50025DCE3 /* SmarTagSensorDetailsViewController.swift in Sources */,
+				66C88E6B2046BEFC00D796FF /* SmarTagMainViewController.swift in Sources */,
+				6636E729205A8CED00DDFC5C /* SmarTagSensorSampleViewCell.swift in Sources */,
+				66C88E702046E74F00D796FF /* SmarTagContentViewController.swift in Sources */,
+				6693CE9E2031929B0090BAC6 /* Configuration.swift in Sources */,
+				66E34B2620581D5B004C57FB /* SmarTagEventSampleViewController.swift in Sources */,
+				6682E63E2031E8120015FB78 /* SmarTagNDefParserProtocol.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6608E848201B381A006AB010 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				660F022E201B7EF100A46C8D /* SmarTagNDefParserV1Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6608E853201B381A006AB010 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6608E85C201B381A006AB010 /* SmarTAGUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6608E84E201B381A006AB010 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6608E835201B3819006AB010 /* SmarTAG */;
+			targetProxy = 6608E84D201B381A006AB010 /* PBXContainerItemProxy */;
+		};
+		6608E859201B381A006AB010 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6608E835201B3819006AB010 /* SmarTAG */;
+			targetProxy = 6608E858201B381A006AB010 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6608E83F201B3819006AB010 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6608E840201B3819006AB010 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6608E85E201B381A006AB010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6608E85F201B381A006AB010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6608E861201B381A006AB010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SmarTAG/SmarTAG.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9L4QA9SNQK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = SmarTAG/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.SmarTAG;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6608E862201B381A006AB010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SmarTAG/SmarTAG.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9L4QA9SNQK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = SmarTAG/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.SmarTAG;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		6608E864201B381A006AB010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9L4QA9SNQK;
+				INFOPLIST_FILE = SmarTAGTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.SmarTAGTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmarTAG.app/SmarTAG";
+			};
+			name = Debug;
+		};
+		6608E865201B381A006AB010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9L4QA9SNQK;
+				INFOPLIST_FILE = SmarTAGTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.SmarTAGTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmarTAG.app/SmarTAG";
+			};
+			name = Release;
+		};
+		6608E867201B381A006AB010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9L4QA9SNQK;
+				INFOPLIST_FILE = SmarTAGUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.SmarTAGUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SmarTAG;
+			};
+			name = Debug;
+		};
+		6608E868201B381A006AB010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9L4QA9SNQK;
+				INFOPLIST_FILE = SmarTAGUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.SmarTAGUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SmarTAG;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6608E831201B3819006AB010 /* Build configuration list for PBXProject "SmarTAG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6608E85E201B381A006AB010 /* Debug */,
+				6608E85F201B381A006AB010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6608E860201B381A006AB010 /* Build configuration list for PBXNativeTarget "SmarTAG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6608E861201B381A006AB010 /* Debug */,
+				6608E862201B381A006AB010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6608E863201B381A006AB010 /* Build configuration list for PBXNativeTarget "SmarTAGTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6608E864201B381A006AB010 /* Debug */,
+				6608E865201B381A006AB010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6608E866201B381A006AB010 /* Build configuration list for PBXNativeTarget "SmarTAGUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6608E867201B381A006AB010 /* Debug */,
+				6608E868201B381A006AB010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6608E82E201B3819006AB010 /* Project object */;
+}
