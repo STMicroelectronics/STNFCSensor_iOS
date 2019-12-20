@@ -1,11 +1,8 @@
 #/bin/bash
-releaseName=$1
-projectDir=$(pwd)
-cd ..
-cp -r $projectDir $releaseName
-cd $releaseName
-rm -rf .git
-rm -rf  Carthage
-cd ..
-zip -r $releaseName.zip $releaseName
-rm -rf $releaseName
+
+versionName=$1
+
+git tag $versionName
+git push --tags origin 
+
+zip -r ../iosSrc_$versionName.zip . -x '*.git*' '*Carthage/Checkouts*'

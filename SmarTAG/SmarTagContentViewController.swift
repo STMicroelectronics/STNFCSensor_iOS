@@ -37,37 +37,152 @@
 
 import Foundation
 import MessageUI
+import SmarTagLib
+import SmarTagCloudLib
+import ToastSwiftFramework
  
 import UIKit
 
 public class SmarTagContentViewController : UITabBarController,SmarTagObjectWithTag{
     
-    public var tagContent:SmarTagNdefParserPotocol?=nil
+    public var tagContent:SmarTagData?=nil
 
+    private static let CLOUD_CONFIGURATION: String = {
+        let bundle = Bundle(for: SmarTagContentViewController.self);
+        return NSLocalizedString("Coud Config", tableName: nil,
+                                 bundle: bundle,
+                                 value: "Coud Config",
+                                 comment: "Coud Config");
+    }();
+    
+    private static let EXPORT_DATA: String = {
+        let bundle = Bundle(for: SmarTagContentViewController.self);
+        return NSLocalizedString("Export Data", tableName: nil,
+                                 bundle: bundle,
+                                 value: "Export Data",
+                                 comment: "Export Data");
+    }();
+    
+    private static let CANCEL: String = {
+        let bundle = Bundle(for: SmarTagContentViewController.self);
+        return NSLocalizedString("Cancel", tableName: nil,
+                                 bundle: bundle,
+                                 value: "Cancel",
+                                 comment: "Cancel");
+    }();
+    
+    private static let SYNC_COMPLETE = {
+        return  NSLocalizedString("Sync Complete",
+                                  tableName: nil,
+                                  bundle: Bundle(for: SmarTagContentViewController.self),
+                                  value: "Sync Complete",
+                                  comment: "Sync Complete");
+    }()
+    
+    private static let SYNC_ERROR_FORMAT = {
+        return  NSLocalizedString("Error: %@",
+                                  tableName: nil,
+                                  bundle: Bundle(for: SmarTagContentViewController.self),
+                                  value: "Error: %@",
+                                  comment: "Error: %@");
+    }()
     
     public override func viewDidLoad() {
-        addSaveBarButton()
+        let menuIcon = UIImage(named: "menu_icon",
+                               in: Bundle(for: SmarTagContentViewController.self),
+                               compatibleWith: nil);
+        let menu =
+            UIBarButtonItem(image: menuIcon, style: .plain, target: self,
+                            action:#selector(showPopupMenu(_:)))
+        navigationItem.rightBarButtonItem = menu
     }
     
-    private func addSaveBarButton(){
-        navigationItem.rightBarButtonItem  = UIBarButtonItem(barButtonSystemItem: .save,
-                                                             target: self,
-                                                             action: #selector(saveReadData))
+    private func createMenuController(items:[UIAlertAction]) -> UIAlertController{
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        items.forEach{ alertController.addAction($0)}
+        
+        if(UIDevice.current.userInterfaceIdiom == .phone){
+            let cancel = UIAlertAction(title: SmarTagContentViewController.CANCEL, style: .cancel, handler: nil)
+            alertController.addAction(cancel)
+        }
+        
+        alertController.modalPresentationStyle = .popover
+        return alertController
+    }
+    
+    @objc public func showPopupMenu(_ sender:UIBarButtonItem){
+        let cloudConfig = UIAlertAction(title: SmarTagContentViewController.CLOUD_CONFIGURATION,
+                                        style: .default){ _ in
+                                            self.showCloudConfig() }
+        
+        let saveReadDataButton  = UIAlertAction(title: SmarTagContentViewController.EXPORT_DATA,
+                                                style: .default){ _ in
+            self.saveReadData()  }
+        
+        let alertController = createMenuController(items: [saveReadDataButton,cloudConfig])
+        if let popoverController = alertController.popoverPresentationController{
+            popoverController.barButtonItem=sender
+            popoverController.sourceView=self.view
+        }
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func showCloudConfig(){
+        let cloudConfigStoryBoard = UIStoryboard(name: "SmarTagCloudConfigViewController",
+                                      bundle: Bundle(for: SmarTagCloudConfigViewController.self))
+        if let vc = cloudConfigStoryBoard.instantiateInitialViewController(){
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         //set the tag content for the sub view
         viewControllers?.forEach{ viewController in
-            if var contentViewController = viewController as? SmarTagObjectWithTag,
-                let data = tagContent{
-                contentViewController.tagContent = data;
-            }//if
+            propagateTagContentTo(viewController)
         }//for each
         //display the subview
         super.viewWillAppear(animated)
+        
+        saveOnCloud()
     }
     
-    @objc private func saveReadData(){
+    private var syncProvider:SmarTagCloudExported? = nil
+    
+    private func createFakeId()->String {
+        //the name is in the format: name's iThings
+        return UIDevice.current.name
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "’s", with: "_")
+    }
+    
+    private func saveOnCloud(){
+        //sync ongoing or alread done
+        if syncProvider != nil {
+            return
+        }
+        let config = SmarTagCloudConfigUtil.defaultInstance
+        if  let data = tagContent,
+            config.isEnabled {
+            let id = data.idStr ?? createFakeId()
+            syncProvider = SmarTagCloudExported(id: id)
+            syncProvider?.sync(data: data){ [weak self] syncError in
+                DispatchQueue.main.sync {
+                    if let error = syncError {
+                        self?.syncProvider = nil // sync fail remove the provider to try again
+                        let errorMessage =
+                            String(format: SmarTagContentViewController.SYNC_ERROR_FORMAT, error.description)
+                        self?.view.makeToast(errorMessage)
+                    }else{
+                        self?.view.makeToast(SmarTagContentViewController.SYNC_COMPLETE)
+                    }//if
+                }//main
+            }
+        }
+    }
+    
+    private func saveReadData(){
         tagContent?.exportToCSV{ data in
             self.sendMailWithAttachCSV(data)
         }
@@ -132,6 +247,7 @@ public class SmarTagContentViewController : UITabBarController,SmarTagObjectWith
             return;
         }
         let mail = MFMailComposeViewController()
+        
         mail.mailComposeDelegate = self;
         mail.setSubject(SmarTagContentViewController.MAIL_OBJECT)
         mail.setMessageBody(SmarTagContentViewController.MAIL_CONTENT, isHTML: false)
@@ -150,6 +266,8 @@ public class SmarTagContentViewController : UITabBarController,SmarTagObjectWith
                 break;
             case .saved, .cancelled:
                 break;
+        @unknown default:
+            break;
         }
         
     }

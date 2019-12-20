@@ -36,6 +36,7 @@
   */
  
 import UIKit
+import SmarTagLib
 
  public protocol SmarTagThresholdSensorCellData{
     var name:String {get}
@@ -56,16 +57,19 @@ open class SmarTagThresholdSensorCell : UITableViewCell{
     @IBOutlet weak var mMaxView: UIStackView!
     
     public var showThresholdDelegate: (() -> Bool)?;
+    public var onSettingsChange:((SmarTagThresholdSensorCell)->Void)?
     
-    public func setData(data:SmarTagThresholdSensorCellData){
+    public func setData(data:SmarTagThresholdSensorCellData, isEditable:Bool){
         mName.text = data.name
         mImage.image = data.image
         mEnable.isOn = data.sensorConf.isEnable
+        mEnable.isEnabled = isEditable
         mMaxUnitText.text = data.unit
         hideThreshold(!((showThresholdDelegate?() ?? false) && data.sensorConf.isEnable))
         
         if let max = data.sensorConf.threshold.max{
             mMaxThText.text=String(format: data.dataFormat, max)
+            mEnable.isEnabled = isEditable
         }else{
             mMaxView.isHidden=true
         }
@@ -75,5 +79,14 @@ open class SmarTagThresholdSensorCell : UITableViewCell{
     public func hideThreshold(_ isHide:Bool){
         mMaxView.isHidden=isHide
     }
+    
+    @IBAction func onEnableStatusChange( switch:UISwitch){
+        onSettingsChange?(self)
+    }
+    
+    @IBAction func onMaxThChange( text:UITextField){
+        onSettingsChange?(self)
+    }
+    
     
 }

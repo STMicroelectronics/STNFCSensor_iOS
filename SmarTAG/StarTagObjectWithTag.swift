@@ -35,8 +35,10 @@
   * OF SUCH DAMAGE.
   */
  
+import SmarTagLib
+ 
 protocol SmarTagObjectWithTag {
-    var tagContent:SmarTagNdefParserPotocol? {get set}
+    var tagContent:SmarTagData? {get set}
 }
 
  extension SmarTagObjectWithTag{

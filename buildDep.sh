@@ -1,4 +1,9 @@
 #!/bin/bash
 
-carthage update
-carthage build --platform iOS
+carthage bootstrap --cache-builds --platform iOS
+
+#build the dependency for SmarTagCloud
+#cd SmarTagCloudLib
+#carthage build --cache-builds --platform iOS
+
+

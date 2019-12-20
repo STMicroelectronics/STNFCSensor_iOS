@@ -19,7 +19,7 @@ mode.
 ## Download the source
 Run the command:
 ```Shell
-git clone https://github.com/STMicroelectronics-CentralLabs/STNFCSensor_iOS
+git clone https://github.com/STMicroelectronics/STNFCSensor_iOS
 ```
 
 ## Compile the project
@@ -29,7 +29,7 @@ To install Carthage follow [this instrunction](https://github.com/Carthage/Carth
 
 And before build the project run:
 ```Shell
-carthage build --platform iOS
+carthage bootstrap --platform iOS
 ```
 
 to downloand and build the project dependency

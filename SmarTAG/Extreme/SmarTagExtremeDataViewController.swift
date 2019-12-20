@@ -37,11 +37,12 @@
 
 import Foundation
 import UIKit
+import SmarTagLib
 
  class SmarTagExtremeDataViewController: UIViewController,SmarTagObjectWithTag {
     @IBOutlet weak var mExtremeCollectionView: UITableView!
     
-    var tagContent: SmarTagNdefParserPotocol?
+    var tagContent: SmarTagData?
     fileprivate var mExtremeData:[SmarTagExtremeDataViewCell.Data] = []
     
     override func viewWillAppear(_ animated: Bool) {

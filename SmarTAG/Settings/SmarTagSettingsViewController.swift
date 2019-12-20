@@ -37,7 +37,8 @@
 
 import Foundation
 import UIKit
-
+import CoreNFC
+import SmarTagLib
 
 class SmartagSettingViewController: UIViewController, SmarTagObjectWithTag {
     
@@ -48,114 +49,173 @@ class SmartagSettingViewController: UIViewController, SmarTagObjectWithTag {
                                   value: "Not defined",
                                   comment: "Not defined");
     }()
+            
+    private static let DEFAULT_SAMPLING_INTERVAL_S = UInt16(5)
+    @IBOutlet weak var tagIdLabel: UILabel!
     
-    @IBOutlet weak var mSensorConfTable: UITableView!
-    @IBOutlet weak var mLogNextSampleSwitch: UISwitch!
-    @IBOutlet weak var mUseThresholdSwitch: UISwitch!
-    @IBOutlet weak var mSamplingInterval: UITextField!
+    @IBOutlet weak var temperatureSettings: SmarTagSensorSettingsView!
+    @IBOutlet weak var pressureSettings: SmarTagSensorSettingsView!
+    @IBOutlet weak var humiditySettings: SmarTagSensorSettingsView!
+    @IBOutlet weak var accelerometerSettings: SmarTagAccelerometerSettingsView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var logNextSampleSwitch: UISwitch!
+    @IBOutlet weak var useThresholdSwitch: UISwitch!
+    @IBOutlet weak var samplingIntervalValue: UITextField!
     
-    private enum CellRowType{
-        case generic(SmarTagSensorSettingCell.Data)
-        case accelerometer(SmarTagAccelerationSettingCell.Data)
+    /// configuration to show in this view controller
+    var tagContent: SmarTagData?
+    
+    //we store the nfc NFCTagReaderSessionDelegate as object to avoid compile problem with version ios 12, where
+    // the class is not present
+    private var settingsWriter:NSObject?
+    
+    private let mTextFieldDelegate = CloseKeyboardOnReturn()
+        
+    override func viewDidLoad() {
+        samplingIntervalValue.delegate = mTextFieldDelegate
     }
-    
-    private var mSensorCellConfiguration: [CellRowType] = []
-    
-    var tagContent: SmarTagNdefParserPotocol?
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        addSaveButton()
+        displayTagId()
         displaySamplingInterval()
         setThresholdView()
         setLogNextSampleView()
-        
         if let conf = tagContent?.configuration{
-            mSensorCellConfiguration = [
-                .generic(SmarTagSensorSettingCell.Data(name:SmarTagSensorName.PRESSURE,
-                                                       unit:SmarTagSensorName.PRESSURE_UNIT,
-                                                       dataFormat: SmarTagSensorName.PRESSURE_DATA_FORMAT,
-                                              image:#imageLiteral(resourceName: "pressure_icon"),
-                                              sensorConf:conf.pressureConf)),
-                .generic(SmarTagSensorSettingCell.Data(name:SmarTagSensorName.HUMIDITY,
-                                              unit:SmarTagSensorName.HUMIDITY_UNIT,
-                                              dataFormat: SmarTagSensorName.HUMIDITY_DATA_FORMAT,
-                                              image:#imageLiteral(resourceName: "humidity_icon"),
-                                              sensorConf:conf.humidityConf)),
-                .generic(SmarTagSensorSettingCell.Data(name:SmarTagSensorName.TEMPERATURE,
-                                              unit:SmarTagSensorName.TEMPERATURE_UNIT,
-                                              dataFormat: SmarTagSensorName.TEMPERATURE_DATA_FORMAT,
-                                              image:#imageLiteral(resourceName: "temperature_icon"),
-                                              sensorConf:conf.temperatureConf)),
-                .accelerometer(SmarTagAccelerationSettingCell.Data(name:SmarTagSensorName.ACCELERATION,
-                                              unit:SmarTagSensorName.ACCELERATION_UNIT,
-                                              dataFormat: SmarTagSensorName.ACCELERATION_DATA_FORMAT,
-                                              image:#imageLiteral(resourceName: "vibration_icon"),
-                                              sensorConf:conf.accelerometerConf,
-                                              orientationEnabled: conf.orientationConf.isEnable,
-                                              wakeUpEnabled: conf.wakeUpConf.isEnable))
-            ]
+            setupTemperatureConfiguration(conf.temperatureConf)
+            setupHumidityConfiguration(conf.humidityConf)
+            setupPressureConfiguration(conf.pressureConf)
+            setupAcceleropmeterConfiguration(conf)
+            onEnableThresholdChange(useThresholdSwitch)
         }
-        
-        mSensorConfTable.dataSource = self;
+    }
+    
+    private func setupTemperatureConfiguration(_ conf:SensorConfiguration){
+        temperatureSettings.title = SmarTagSensorName.TEMPERATURE
+        temperatureSettings.image = UIImage(imageLiteralResourceName: "temperature_icon")
+        temperatureSettings.thresholdUnit = SmarTagSensorName.TEMPERATURE_UNIT
+        temperatureSettings.setConfiguration(conf: conf,valueFormat: SmarTagSensorName.TEMPERATURE_DATA_FORMAT)
+        temperatureSettings.isEdiatable = tagCanBeWritten
+    }
+    
+    private func setupPressureConfiguration(_ conf:SensorConfiguration){
+        pressureSettings.title = SmarTagSensorName.PRESSURE
+        pressureSettings.image = UIImage(imageLiteralResourceName: "pressure_icon")
+        pressureSettings.thresholdUnit = SmarTagSensorName.PRESSURE_UNIT
+        pressureSettings.setConfiguration(conf: conf,valueFormat: SmarTagSensorName.PRESSURE_DATA_FORMAT)
+        pressureSettings.isEdiatable = tagCanBeWritten
+    }
+    
+    private func setupHumidityConfiguration(_ conf:SensorConfiguration){
+        humiditySettings.title = SmarTagSensorName.HUMIDITY
+        humiditySettings.image = UIImage(imageLiteralResourceName: "humidity_icon")
+        humiditySettings.thresholdUnit = SmarTagSensorName.HUMIDITY_UNIT
+        humiditySettings.setConfiguration(conf: conf,valueFormat: SmarTagSensorName.HUMIDITY_DATA_FORMAT)
+        humiditySettings.isEdiatable = tagCanBeWritten
+    }
+    
+    private func setupAcceleropmeterConfiguration(_ conf:Configuration){
+        accelerometerSettings.title = SmarTagSensorName.ACCELERATION
+        accelerometerSettings.image = UIImage(imageLiteralResourceName: "vibration_icon")
+        accelerometerSettings.thresholdUnit = SmarTagSensorName.ACCELERATION_UNIT
+        accelerometerSettings.setAccelerometerConfiguration(conf.accelerometerConf, valueFormat: SmarTagSensorName.ACCELERATION_DATA_FORMAT)
+        accelerometerSettings.setWakeupEventConfiguraiton(conf.wakeUpConf)
+        accelerometerSettings.setOrientationEventConfiguration(conf.orientationConf)
+        accelerometerSettings.isEdiatable = tagCanBeWritten
         
     }
     
+    private func displayTagId(){
+        let id = tagContent?.idStr ?? "Unknown"
+        self.tagIdLabel.text = "Id: \(id)"
+    }
+    
+    private func addSaveButton(){
+        if(tagCanBeWritten){
+            if (parent?.navigationItem.rightBarButtonItem) != nil {
+                parent?.navigationItem.rightBarButtonItems?.append(saveButton)
+            }else{
+                parent?.navigationItem.rightBarButtonItem = saveButton
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeSaveButton()
+    }
+    
+    private func removeSaveButton(){
+        if(tagCanBeWritten){
+            parent?.navigationItem.rightBarButtonItems?.removeLast()
+        }
+    }
     
     private func displaySamplingInterval(){
         if let interval = tagContent?.configuration.samplingInterval_s {
-            mSamplingInterval.text = "\(interval)"
+            samplingIntervalValue.text = "\(interval)"
         }else{
-            mSamplingInterval.text = SmartagSettingViewController.NOT_DEFINED
+            samplingIntervalValue.text = SmartagSettingViewController.NOT_DEFINED
         }
     }
     
     private func setThresholdView(){
-        mUseThresholdSwitch.isOn = tagContent?.configuration.mode == Configuration.SamplingMode.SamplingWithThreshold
+        useThresholdSwitch.isOn = tagContent?.configuration.mode == Configuration.SamplingMode.SamplingWithThreshold
+        useThresholdSwitch.isEnabled = tagCanBeWritten
     }
     
     private func setLogNextSampleView(){
-        mLogNextSampleSwitch.isOn = tagContent?.configuration.mode == Configuration.SamplingMode.StoreNextSample
+        logNextSampleSwitch.isOn = tagContent?.configuration.mode == Configuration.SamplingMode.StoreNextSample
+        logNextSampleSwitch.isEnabled = tagCanBeWritten
     }
     
     @IBAction func onEnableThresholdChange(_ sender: UISwitch) {
-        mSensorConfTable.reloadData()
-    }
- }
-
-extension SmartagSettingViewController:UITableViewDataSource{
-    private static let GENERIC_CELL_ID = "SmarTagSensorSettingCellID"
-    private static let ACC_CELL_ID = "SmarTagAccelerationSettingCellID"
-        
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mSensorCellConfiguration.count
+        temperatureSettings.showThreshold = sender.isOn
+        pressureSettings.showThreshold = sender.isOn
+        humiditySettings.showThreshold = sender.isOn
+        accelerometerSettings.showThreshold = sender.isOn
     }
     
-    private func setupGenericCellContent(cell:SmarTagSensorSettingCell, content:SmarTagSensorSettingCell.Data){
-        cell.showThresholdDelegate = { self.mUseThresholdSwitch.isOn }
-        cell.setData(data:content)
+    private func getSamplingMode()->Configuration.SamplingMode{
+        if useThresholdSwitch.isOn {
+            return .SamplingWithThreshold
+        }else if logNextSampleSwitch.isOn{
+            return .StoreNextSample
+        }else{
+            return .Sampling
+        }
     }
     
-    private func setupGenericCellContent(cell:SmarTagAccelerationSettingCell, content:SmarTagAccelerationSettingCell.Data){
-        cell.showThresholdDelegate = { self.mUseThresholdSwitch.isOn }
-        cell.setData(data:content)
+    private func getSamplingInterval()->UInt16 {
+        guard let value = samplingIntervalValue.text  else {
+            return SmartagSettingViewController.DEFAULT_SAMPLING_INTERVAL_S
+        }
+        return UInt16(value) ?? SmartagSettingViewController.DEFAULT_SAMPLING_INTERVAL_S
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch mSensorCellConfiguration[indexPath.row] {
-        case .generic(let data):
-            let cell = tableView.dequeueReusableCell(withIdentifier: SmartagSettingViewController.GENERIC_CELL_ID, for: indexPath) as! SmarTagSensorSettingCell;
-            setupGenericCellContent(cell: cell, content: data)
-            return cell
-        case .accelerometer(let data):
-            let cell = tableView.dequeueReusableCell(withIdentifier: SmartagSettingViewController.ACC_CELL_ID, for: indexPath) as! SmarTagAccelerationSettingCell;
-            setupGenericCellContent(cell: cell, content: data)
-            return cell
+    @IBAction func onSaveClieked(_ sender: UIBarButtonItem) {
+        guard #available(iOS 13, *) else {
+            return
         }
         
+        let newConf = Configuration(samplingInteval: getSamplingInterval(),
+                                    mode: getSamplingMode(),
+                                    temperatureConf: temperatureSettings.getConfiguration(),
+                                    humidityConf: humiditySettings.getConfiguration(),
+                                    pressureConf: pressureSettings.getConfiguration(),
+                                    accelerometerConf: accelerometerSettings.getAccelerometerConfiguration(),
+                                    orientationConf: accelerometerSettings.getOrientationEventConfiguration(), wakeUpConf:  accelerometerSettings.getWakeUpConfiguration())
+        settingsWriter = SmarTagSettingsWriter(conf: newConf)
     }
     
+    /// true if the app is running on ios13 or above where the tag can be written
+    private lazy var tagCanBeWritten: Bool = {
+        if #available(iOS 13, *){
+            return true
+        }else{
+            return false
+        }
+    }()
     
  }
- 

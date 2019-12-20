@@ -38,8 +38,9 @@
 import Foundation
 import UIKit
 import CoreNFC
+import SmarTagLib
 
-public class SmarTagMainViewController : UIViewController,NFCNDEFReaderSessionDelegate{
+public class SmarTagMainViewController : UIViewController{
     
     private static let NFC_READ_MESSAGE = {
         return  NSLocalizedString("You can scan NFC-tags by holding them behind the top of your iPhone.",
@@ -56,18 +57,10 @@ public class SmarTagMainViewController : UIViewController,NFCNDEFReaderSessionDe
                                   value: "Error reading the tag",
                                   comment: "Error reading the tag");
     }()
-    
-    private static let INVALID_NFC_MESSAGE = {
-        return  NSLocalizedString("SmarTag record not found",
-                                  tableName: nil,
-                                  bundle: Bundle(for: SmarTagMainViewController.self),
-                                  value: "SmarTag record not found",
-                                  comment: "SmarTag record not found");
-    }()
-    
+        
     private static let SHOW_CONTENT_SEGUE = "SmarTag_showTagContent"
     
-    private var readerSession:NFCNDEFReaderSession?
+    private var readerSession:NFCReaderSession?
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -78,20 +71,58 @@ public class SmarTagMainViewController : UIViewController,NFCNDEFReaderSessionDe
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden=false
     }
+       
+    @IBAction func onReadNfcButtonClicked(_ sender: UIButton) {
+      /*
+         let data = generateFakeSmartTagData()
+         self.performSegue(withIdentifier: SmarTagMainViewController.SHOW_CONTENT_SEGUE, sender: data)
+      */
+        #if targetEnvironment(simulator)
+            let data = generateFakeSmartTagData()
+            self.performSegue(withIdentifier: SmarTagMainViewController.SHOW_CONTENT_SEGUE, sender: data)
+        #else
+        if #available(iOS 13, *){
+            startReadTag()
+        }else{
+            startReadNDef()
+        }
+        #endif
+    }
+            
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if var contentViewController = segue.destination as? SmarTagObjectWithTag,
+            let data = sender as? SmarTagData{
+            contentViewController.tagContent = data;
+        }
+    }
     
-    private func startReadNDef(){
+    fileprivate func onNfcTagRead(session:NFCReaderSession, result:Result<SmarTagData,SmarTagIOError>){
+        switch result {
+        case .failure(let error):
+            if #available(iOS 13, *){
+                session.invalidate(errorMessage: error.localizedDescription)
+            }else{
+                DispatchQueue.main.async {
+                    self.showErrorMessage(title: SmarTagMainViewController.INVALID_NFC_TITLE, message: error.localizedDescription)
+                }
+                session.invalidate()
+            }
+            return
+        case .success(let data):
+            session.invalidate()
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: SmarTagMainViewController.SHOW_CONTENT_SEGUE, sender: data)
+            }// dispatch main
+        }//switch
+    }
+}
+
+ extension SmarTagMainViewController : NFCNDEFReaderSessionDelegate {
+    
+    fileprivate func startReadNDef(){
         readerSession = NFCNDEFReaderSession(delegate: self,queue: nil,invalidateAfterFirstRead: true)
         readerSession?.alertMessage = SmarTagMainViewController.NFC_READ_MESSAGE
         readerSession?.begin()
-    }
-    
-    @IBAction func onReadNfcButtonClicked(_ sender: UIButton) {
-        #if targetEnvironment(simulator)
-            let data = SmarTagNDefParserFake()
-            self.performSegue(withIdentifier: SmarTagMainViewController.SHOW_CONTENT_SEGUE, sender: data)
-        #else
-            startReadNDef()
-        #endif
     }
     
     public func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
@@ -102,46 +133,76 @@ public class SmarTagMainViewController : UIViewController,NFCNDEFReaderSessionDe
             case .readerSessionInvalidationErrorFirstNDEFTagRead, .readerSessionInvalidationErrorUserCanceled:
                 break
             default:
-                DispatchQueue.main.async {
-                    self.showErrorMessage(title: SmarTagMainViewController.INVALID_NFC_TITLE,
-                                          message: error.localizedDescription)
-                }
+                self.onNfcTagRead(session: session, result: Result.failure(readerError.toSmarTagIOError))
             
         }
     
         print("Error Reading Tag",error.localizedDescription)
     }
     
-    private func checkCorrectNdef(messages: [NFCNDEFMessage]) -> SmarTagNdefParserPotocol?{
-        if let message = messages.first {
-            let record = message.records.first{ rec in
-                let type = String(data: rec.type, encoding: .utf8)
-                return rec.typeNameFormat == .nfcExternal && type == "st.com:smartag"
-            }
-            if let rec = record{
-                return try? SmarTagNDefParserV1(rawData: rec.payload);
-            }
+    private func findSmarTagPayload(messages: [NFCNDEFMessage]) -> NFCNDEFPayload?{
+        return  messages.first?.records.first{ rec in
+            let type = String(data: rec.type, encoding: .utf8)
+            return rec.typeNameFormat == .nfcExternal && type == "st.com:smartag"
         }
-        return nil
     }
     
     public func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-        let smarTagData = checkCorrectNdef(messages: messages)
-        DispatchQueue.main.async {
-            if let data = smarTagData{
-                self.performSegue(withIdentifier: SmarTagMainViewController.SHOW_CONTENT_SEGUE, sender: data)
-            }else{
-                self.showErrorMessage(title: SmarTagMainViewController.INVALID_NFC_TITLE,
-                                      message: SmarTagMainViewController.INVALID_NFC_MESSAGE)
-            }//if-else
-        }// main queue
+        guard let smarTagPayload = findSmarTagPayload(messages: messages) else {
+            self.onNfcTagRead(session: session,result: .failure(.malformedNDef))
+            return
+        }
+        
+        let parser = SmarTagV1NDefParser(identifier: smarTagPayload.identifier, rawData: smarTagPayload.payload)
+        parser.readContent{ result in
+            self.onNfcTagRead(session: session,result: result)
+        }
     }
+ }
+
+ @available(iOS 13, *)
+ extension SmarTagMainViewController : NFCTagReaderSessionDelegate {
     
-    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if var contentViewController = segue.destination as? SmarTagObjectWithTag,
-            let data = sender as? SmarTagNdefParserPotocol{
-            contentViewController.tagContent = data;
+    fileprivate func startReadTag(){
+        readerSession = NFCTagReaderSession(pollingOption: .iso15693, delegate: self)
+        readerSession?.alertMessage = SmarTagMainViewController.NFC_READ_MESSAGE
+        readerSession?.begin()
+     }
+    
+    public func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
+        NSLog("Session Activated")
+    }
+        
+    public func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
+        print(error.localizedDescription)
+        NSLog("Error")
+        guard let readerError = error as? NFCReaderError else {
+            return
+        }
+        switch readerError.code {
+        case .readerSessionInvalidationErrorUserCanceled,
+             .readerSessionInvalidationErrorSessionTimeout : 
+            break
+        default:
+            self.onNfcTagRead(session: session, result: .failure(readerError.toSmarTagIOError))
         }
     }
     
-}
+    public func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
+        guard let tag = tags.first, case let NFCTag.iso15693(type5Tag) = tag else{
+            return
+        }
+    
+        session.connect(to: tag){ error in
+            guard error == nil else{
+                session.invalidate(errorMessage: error!.localizedDescription)
+                return
+            }
+            let parser = SmartTagIso15693Parser(tagIO: SmarTagIOISO15693(type5Tag))
+            parser.readContent{ result in
+                self.onNfcTagRead(session: session,result: result)
+            }
+        }
+    }
+        
+ }

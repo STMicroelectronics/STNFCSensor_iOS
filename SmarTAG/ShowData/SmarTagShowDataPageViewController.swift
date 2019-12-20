@@ -36,6 +36,7 @@
   */
 import Foundation
 import UIKit
+import SmarTagLib
  
 /// using a UIPageController inside a TabBar controller it is bugged, the UIPageController takes more space
 /// than what it is needed and the TabBar background it became darker.
@@ -44,7 +45,7 @@ import UIKit
  //  the schema is: TabBarViewController[ ViewController[ ContainerView[SmarTagShowDataPageViewController] ] ]
 public class SmarTagShowDataPageViewControllerWorkArround : UIViewController,SmarTagObjectWithTag{
  
-    var tagContent: SmarTagNdefParserPotocol?
+    var tagContent: SmarTagData?
     
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         propagateTagContentTo(segue.destination)
@@ -86,13 +87,10 @@ public class SmarTagShowDataPageViewController: UIPageViewController , SmarTagOb
     
     
     // when set the tagcontent extract the sensor and event sample
-    var tagContent: SmarTagNdefParserPotocol?{
+    var tagContent: SmarTagData?{
         didSet{
-            sensorSample = tagContent?.samples
-                .compactMap(SmarTagShowDataPageViewController.extractSensorSample)
-        
-            eventSample = tagContent?.samples
-                .compactMap(SmarTagShowDataPageViewController.extractEventSample)
+            sensorSample = tagContent?.samples.sensorSamples
+            eventSample = tagContent?.samples.eventSamples
         }
     }
     
@@ -153,7 +151,7 @@ extension SmarTagShowDataPageViewController: UIPageViewControllerDataSource {
     
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.index(of:viewController) else {
+        guard let viewControllerIndex = orderedViewControllers.firstIndex(of:viewController) else {
             return nil
         }
         
@@ -164,7 +162,7 @@ extension SmarTagShowDataPageViewController: UIPageViewControllerDataSource {
     
     public func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.index(of:viewController) else {
+        guard let viewControllerIndex = orderedViewControllers.firstIndex(of:viewController) else {
             return nil
         }
         
@@ -182,7 +180,7 @@ extension SmarTagShowDataPageViewController: UIPageViewControllerDataSource {
     public func presentationIndex(for pageViewController: UIPageViewController) -> Int{
 
         guard let firstViewController = viewControllers?.first,
-            let firstViewControllerIndex = orderedViewControllers.index(of:firstViewController) else {
+            let firstViewControllerIndex = orderedViewControllers.firstIndex(of:firstViewController) else {
                 return 0
         }
         

@@ -87,6 +87,9 @@ public class SmarTagSensorSampleViewCell : UITableViewCell{
         mChartView.rightAxis.enabled=false;
         mChartView.chartDescription?.enabled=false
         mChartView.legend.enabled=false;
+        if #available(iOS 13, *){
+            mChartView.leftAxis.labelTextColor = UIColor.label
+        }
     }
     
     
@@ -95,7 +98,7 @@ public class SmarTagSensorSampleViewCell : UITableViewCell{
     /// - Parameter data: points to plot
     /// - Returns: line to plot in the chart
     private func createDataSet(data:[ChartDataEntry])->LineChartData{
-        let dataSet = LineChartDataSet(values: data,label: nil)
+        let dataSet = LineChartDataSet(entries: data,label: nil)
         dataSet.drawCirclesEnabled=false
         dataSet.drawIconsEnabled=false
         dataSet.drawValuesEnabled=false

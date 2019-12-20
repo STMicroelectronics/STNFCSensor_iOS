@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nfy-Pl-JA5">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nfy-Pl-JA5">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +23,7 @@
             <objects>
                 <navigationController id="nfy-Pl-JA5" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6cX-72-TrZ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -45,7 +43,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJC-Xn-Ofb">
-                                <rect key="frame" x="87.5" y="265.5" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="255.5" width="200" height="200"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <state key="normal" title="Read NFC tag" backgroundImage="SearchButton"/>
                                 <connections>
@@ -53,21 +51,38 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOm-bB-sFP">
-                                <rect key="frame" x="112.5" y="497.5" width="150" height="150"/>
+                                <rect key="frame" x="112.5" y="487.5" width="150" height="150"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <state key="normal" title="About" backgroundImage="AboutButton"/>
                                 <connections>
                                     <segue destination="A8z-68-Yoe" kind="show" id="qkD-Jq-KuD"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HarverstingButton" translatesAutoresizingMaskIntoConstraints="NO" id="HFx-Wb-3Ey">
+                                <rect key="frame" x="112.5" y="73.5" width="150" height="150"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMo-3j-CVQ">
+                                <rect key="frame" x="108" y="73.5" width="159" height="150"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <state key="normal" title="Energy Harvesting"/>
+                                <connections>
+                                    <segue destination="2la-9S-5ER" kind="show" id="W73-tx-JtF"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="NOm-bB-sFP" firstAttribute="centerX" secondItem="WjK-wy-8KG" secondAttribute="centerX" id="2r1-1M-SQ4"/>
+                            <constraint firstItem="zJC-Xn-Ofb" firstAttribute="top" secondItem="QMo-3j-CVQ" secondAttribute="bottom" constant="32" id="9hP-Jo-63h"/>
                             <constraint firstItem="WjK-wy-8KG" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NOm-bB-sFP" secondAttribute="bottom" constant="8" id="DpM-Wh-sKC"/>
+                            <constraint firstItem="HFx-Wb-3Ey" firstAttribute="bottom" secondItem="QMo-3j-CVQ" secondAttribute="bottom" id="L4h-sJ-NAj"/>
                             <constraint firstItem="NOm-bB-sFP" firstAttribute="top" secondItem="zJC-Xn-Ofb" secondAttribute="bottom" constant="32" id="Ty6-8j-14g"/>
+                            <constraint firstItem="HFx-Wb-3Ey" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WjK-wy-8KG" secondAttribute="top" constant="8" id="Vub-MV-cko"/>
+                            <constraint firstItem="QMo-3j-CVQ" firstAttribute="top" secondItem="HFx-Wb-3Ey" secondAttribute="top" id="XlE-vV-YqI"/>
+                            <constraint firstItem="HFx-Wb-3Ey" firstAttribute="centerX" secondItem="WjK-wy-8KG" secondAttribute="centerX" id="c1K-QY-91A"/>
                             <constraint firstItem="zJC-Xn-Ofb" firstAttribute="centerY" secondItem="WjK-wy-8KG" secondAttribute="centerY" id="dJC-v3-IJg"/>
                             <constraint firstItem="zJC-Xn-Ofb" firstAttribute="centerX" secondItem="WjK-wy-8KG" secondAttribute="centerX" id="lKT-I4-7zN"/>
+                            <constraint firstItem="QMo-3j-CVQ" firstAttribute="centerX" secondItem="WjK-wy-8KG" secondAttribute="centerX" id="te8-B8-3tc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WjK-wy-8KG"/>
                     </view>
@@ -79,6 +94,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xvy-wl-QnW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3111.1999999999998" y="-179.46026986506749"/>
+        </scene>
+        <!--SmarTagSignleShot-->
+        <scene sceneID="vva-lU-Smc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SmarTagSignleShot" id="2la-9S-5ER" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="8Yv-Ri-xuO"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0k4-JP-1md" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2562" y="-543"/>
         </scene>
         <!--Smar Tag Content View Controller-->
         <scene sceneID="0yj-7F-f9S">
@@ -118,16 +143,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_header" translatesAutoresizingMaskIntoConstraints="NO" id="p8N-Yq-Jrw">
-                                <rect key="frame" x="8" y="80" width="359" height="120"/>
+                                <rect key="frame" x="8" y="60" width="359" height="120"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ST AppName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVt-jN-JUd">
-                                <rect key="frame" x="8" y="216" width="359" height="31.5"/>
+                                <rect key="frame" x="8" y="196" width="359" height="33.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uby-KX-6KK">
-                                <rect key="frame" x="8" y="255.5" width="359" height="18"/>
+                                <rect key="frame" x="8" y="237.5" width="359" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -139,7 +164,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1di-xN-8l1">
-                                <rect key="frame" x="8" y="290" width="375" height="345"/>
+                                <rect key="frame" x="8" y="271.5" width="375" height="363.5"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO" allowsPictureInPictureMediaPlayback="NO">
                                     <dataDetectorTypes key="dataDetectorTypes" none="YES"/>
@@ -148,7 +173,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="7dV-f1-143" firstAttribute="leading" secondItem="cjW-8w-u7m" secondAttribute="leading" constant="8" id="3h2-eh-rrc"/>
                             <constraint firstItem="Uby-KX-6KK" firstAttribute="leading" secondItem="cjW-8w-u7m" secondAttribute="leading" constant="8" id="53l-WA-hue"/>
@@ -192,6 +217,7 @@
     </scenes>
     <resources>
         <image name="AboutButton" width="150" height="150"/>
+        <image name="HarverstingButton" width="150" height="150"/>
         <image name="SearchButton" width="200" height="200"/>
         <image name="about_header" width="212" height="120"/>
     </resources>

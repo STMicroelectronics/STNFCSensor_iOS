@@ -1,1 +1,6 @@
-github "danielgindi/Charts" "v3.1.1"
+github "SwiftyJSON/SwiftyJSON" "5.0.0"
+github "danielgindi/Charts" "v3.4.0"
+github "emqtt/CocoaMQTT" "1.2.5"
+github "kishikawakatsumi/KeychainAccess" "v4.1.0"
+github "robbiehanson/CocoaAsyncSocket" "7.6.3"
+github "scalessec/Toast-Swift" "5.0.1"

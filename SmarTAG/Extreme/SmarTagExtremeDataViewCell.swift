@@ -37,6 +37,7 @@
 
 import Foundation
 import UIKit
+import SmarTagLib
  
  class SmarTagExtremeDataViewCell : UITableViewCell{
     

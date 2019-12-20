@@ -37,7 +37,8 @@
 
 import Foundation
 import UIKit
-
+import SmarTagLib
+ 
 class SmarTagSensorSettingCell : SmarTagThresholdSensorCell{
     
     @IBOutlet weak var mMinView: UIStackView!
@@ -52,11 +53,12 @@ class SmarTagSensorSettingCell : SmarTagThresholdSensorCell{
         public let sensorConf: SensorConfiguration
     }
 
-    public func setData(data:SmarTagSensorSettingCell.Data){
-        super.setData(data:data)
+    public func setData(data:SmarTagSensorSettingCell.Data, isEditable:Bool){
+        super.setData(data:data,isEditable: isEditable)
         mMinUnitText.text = data.unit
         if let min = data.sensorConf.threshold.min{
             mMinThText.text=String(format: data.dataFormat, min)
+            mMinThText.isEnabled = isEditable
         }else{
             mMinView.isHidden=true
         }
@@ -65,6 +67,10 @@ class SmarTagSensorSettingCell : SmarTagThresholdSensorCell{
     public override func hideThreshold(_ isHide:Bool){
         super.hideThreshold(isHide)
         mMinView.isHidden=isHide
+    }
+    
+    @IBAction func onMinThChange( text:UITextField){
+        onSettingsChange?(self)
     }
     
 }

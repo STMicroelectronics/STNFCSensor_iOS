@@ -56,34 +56,3 @@ extension UIViewController{
     }
     
 }
-
-
-/*
- -(void)showErrorMsg:(NSString *)msg title:(NSString*)title closeController:(BOOL)exit{
- 
- UIAlertController *alert;
- 
- alert = [UIAlertController alertControllerWithTitle:title
- message:msg
- preferredStyle:UIAlertControllerStyleAlert];
- 
- 
- UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:BLUESTSDK_LOCALIZE(@"OK",nil)
- style:UIAlertActionStyleDefault
- handler:^(UIAlertAction * action) {
- if(exit) {
- if (self.navigationController != nil)
- [self.navigationController popViewControllerAnimated:YES];
- else if (self.presentingViewController!=nil)
- [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
- else
- NSLog(@"Impossible close the view controller");
- }
- }];
- if(alert!=nil){
- [alert addAction:defaultAction];
- [self presentViewController:alert animated:YES completion:nil];
- }
- 
- }
- */

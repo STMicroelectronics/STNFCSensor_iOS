@@ -37,7 +37,8 @@
 
 import Foundation
 import UIKit
-
+import SmarTagLib
+ 
  class SmarTagAccelerationSettingCell : SmarTagThresholdSensorCell{
   
     public struct Data : SmarTagThresholdSensorCellData{
@@ -55,12 +56,12 @@ import UIKit
     @IBOutlet weak var mOrientationView: UIView!
     @IBOutlet weak var mWakeUpView: UIView!
     
-    public func setData(data:SmarTagAccelerationSettingCell.Data){
-        super.setData(data: data)
+    public func setData(data:SmarTagAccelerationSettingCell.Data, isEditable:Bool){
+        super.setData(data: data,isEditable: isEditable)
         mOrientaitonSwitch.isOn = data.orientationEnabled
+        mOrientaitonSwitch.isEnabled = isEditable
         mWakeUpSwitch.isOn = data.wakeUpEnabled
-        
-        
+        mWakeUpSwitch.isEnabled = isEditable
     }
     
     public override func hideThreshold(_ isHide:Bool){
@@ -69,5 +70,11 @@ import UIKit
         mWakeUpView.isHidden = isHide
     }
     
+    @IBAction func onOrientationEnableStatusChange(switch:UISwitch){
+        onSettingsChange?(self)
+    }
     
+    @IBAction func onWakeUpEnableStatusChange(switch:UISwitch){
+        onSettingsChange?(self)
+    }
 }

@@ -37,6 +37,7 @@
 import Foundation
 import UIKit
 import Charts
+import SmarTagLib
 
 /// show the plot with the sensor samples
 public class SmarTagSensorSampleViewController :UIViewController{

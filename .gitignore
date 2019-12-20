@@ -113,3 +113,5 @@ fastlane/test_output
 
 
 # End of https://www.gitignore.io/api/xcode,swift,macos,carthage
+
+SmarTagCloudLib/Carthage/

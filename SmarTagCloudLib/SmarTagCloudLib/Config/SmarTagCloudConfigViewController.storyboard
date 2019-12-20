@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6ep-y3-rC2">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Smar Tag Cloud Config View Controller-->
+        <scene sceneID="euG-3x-u33">
+            <objects>
+                <viewController id="6ep-y3-rC2" customClass="SmarTagCloudConfigViewController" customModule="SmarTagCloudLib" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fun-D8-nJV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8BR-dW-cHM">
+                                <rect key="frame" x="318" y="8" width="51" height="31"/>
+                                <connections>
+                                    <action selector="onCloudEnableChanged:" destination="6ep-y3-rC2" eventType="valueChanged" id="j2i-fJ-Bnx"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Cloud Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaw-xh-n9k">
+                                <rect key="frame" x="8" y="13" width="134" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZfI-fU-3Vy">
+                                <rect key="frame" x="8" y="47" width="359" height="566"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CloudConfigTableCell" textLabel="2uI-1i-0m2" style="IBUITableViewCellStyleDefault" id="GCo-8c-rNl">
+                                        <rect key="frame" x="0.0" y="28" width="359" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GCo-8c-rNl" id="KYE-IL-LJX">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2uI-1i-0m2">
+                                                    <rect key="frame" x="15" y="0.0" width="297" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dn7-iW-viz">
+                                <rect key="frame" x="291" y="621" width="68" height="30"/>
+                                <state key="normal" title="Configure"/>
+                                <connections>
+                                    <action selector="onConfigureButtonPressed:" destination="6ep-y3-rC2" eventType="touchUpInside" id="isQ-gf-8Jf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ZfI-fU-3Vy" firstAttribute="leading" secondItem="EkM-p5-S0Z" secondAttribute="leading" constant="8" id="0fx-9D-LrO"/>
+                            <constraint firstItem="EkM-p5-S0Z" firstAttribute="trailing" secondItem="8BR-dW-cHM" secondAttribute="trailing" constant="8" id="0ql-xe-8rp"/>
+                            <constraint firstItem="8BR-dW-cHM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xaw-xh-n9k" secondAttribute="trailing" constant="8" id="9L6-jX-UeK"/>
+                            <constraint firstItem="Dn7-iW-viz" firstAttribute="top" secondItem="ZfI-fU-3Vy" secondAttribute="bottom" constant="8" id="Ckc-zT-XeJ"/>
+                            <constraint firstItem="xaw-xh-n9k" firstAttribute="leading" secondItem="EkM-p5-S0Z" secondAttribute="leading" constant="8" id="Kv1-VD-iD3"/>
+                            <constraint firstItem="xaw-xh-n9k" firstAttribute="centerY" secondItem="8BR-dW-cHM" secondAttribute="centerY" id="RRi-P1-tqR"/>
+                            <constraint firstItem="8BR-dW-cHM" firstAttribute="top" secondItem="EkM-p5-S0Z" secondAttribute="top" constant="8" id="TaG-a7-pYQ"/>
+                            <constraint firstItem="ZfI-fU-3Vy" firstAttribute="top" secondItem="8BR-dW-cHM" secondAttribute="bottom" constant="8" id="UTs-S1-3hR"/>
+                            <constraint firstItem="EkM-p5-S0Z" firstAttribute="bottom" secondItem="Dn7-iW-viz" secondAttribute="bottom" constant="16" id="ufV-22-Y6h"/>
+                            <constraint firstItem="EkM-p5-S0Z" firstAttribute="trailing" secondItem="Dn7-iW-viz" secondAttribute="trailing" constant="16" id="veI-0C-ORS"/>
+                            <constraint firstItem="EkM-p5-S0Z" firstAttribute="trailing" secondItem="ZfI-fU-3Vy" secondAttribute="trailing" constant="8" id="y5K-36-t71"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EkM-p5-S0Z"/>
+                    </view>
+                    <connections>
+                        <outlet property="enableLoggingSwitch" destination="8BR-dW-cHM" id="HpU-9U-YRj"/>
+                        <outlet property="providerTableView" destination="ZfI-fU-3Vy" id="zDh-wk-q6q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bFa-d1-Zk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="77.599999999999994" y="157.87106446776613"/>
+        </scene>
+    </scenes>
+</document>

@@ -36,6 +36,7 @@
   */
 import Foundation
 import UIKit
+import SmarTagLib
 
 
 /// View controller to display the event samples
